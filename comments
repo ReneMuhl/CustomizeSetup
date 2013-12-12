@@ -1,0 +1,34 @@
+#Skript zum Testen von OpenStack
+#Übergabeparameter: Anz. VMs, die gestartet werden sollen...
+#
+#1. Download des Images
+#2. Hinzufüges des Images zu Glance
+#3. Erzeugen der VM mit nova boot
+
+noch nicht geklärt:
+	- wird cloudinit zur Initialisierung der VM benötigt (Anlegen des Benutzers, dt. Tastaturlayout)
+	- muss openrc geladen werden, um eine Authentifizierung am OpenStack System vornehmen zu können und das CLI benutzen zu können
+	--> im Home-Verzeichnis liegen 2 passende Dateien
+	- Unterscheidung 32/64Bit
+	- Kapazitäten(CPU/RAM/HDD) und Anzahl VMs muss mgl sein --> nova flavor-list
+	- Internetverbindung VMs
+	- VM sollten sich untereinander sehen
+	- als User ausführen, von anderem Verzeichnis
+
+
+
+
+#Download des Cloud Image
+wget
+# [1]http://cloud-images.ubuntu.com/precise/20131212/precise-server-cloudimg-amd64-disk1.img
+
+
+#Hinzufügen des Images zu OpenStack Image-Service Glance
+
+#
+#nova boot ....
+
+
+
+
+
