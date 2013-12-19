@@ -5,16 +5,30 @@ IMAGE_URL="http://cloud-images.ubuntu.com/precise/20131212/"
 DOWNLOADFOLDER="images"
 IMAGENAME="precise-server-cloudimg-amd64-disk1.img"
 
+#variables
+GLANCEIMAGENAME="ubuntu12.04.3LTS"
 
 
-
-echo "Image (~243MB)  wird jetzt gedownloadet"
-wget -P"$DOWNLOADFOLDER" "$IMAGE_URL""$IMAGENAME"
-echo "Image wurde downloadet und befindet sich jetzt im Ordner:" "$DOWNLOADFOLDER"
+if [ -f "$DOWNLOADFOLDER"/"$IMAGENAME" ]
+then
+    	echo "Image existiert bereits"
+else
+	echo "Image (~243MB) wird jetzt gedownloadet"
+	wget -P"$DOWNLOADFOLDER" "$IMAGE_URL""$IMAGENAME"
+	echo "Image wurde downloadet und befindet sich jetzt im Ordner:" "$DOWNLOADFOLDER"
+fi
 
 source ~/openstackrc-demo
-glance image-create --name ubuntu12.04.3LTS --disk-format=raw --container-format=bare --file "$DOWNLOADFOLDER"/"$IMAGENAME"
-glance index
 
+ISIMAGEADDED=`glance index | awk '{print $2}' | grep -E "$GLANCEIMAGENAME"`
+echo "$ISIMAGEADDED"
+if [[ -z "$ISIMAGEADDED" ]]
+then
+	echo "image noch nicht geaddet"
+	glance image-create --name "$GLANCEIMAGENAME" --disk-format=raw --container-format=bare --file "$DOWNLOADFOLDER"/"$IMAGENAME"
+	glance index
+else
+	echo "image bereits geaddet"
+fi
 
-#2do: get image by name in glance index and start nova boot with this image
+nova boot --image "$GLANCEIMAGENAME" --flavor 1 vm_01
