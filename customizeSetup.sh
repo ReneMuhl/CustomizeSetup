@@ -42,6 +42,10 @@ chmod 400 "$KEYPAIRNAME"
 #Option für Automatische Floating-IP-Zuweisung der Nova-Konfigurationsdatei hinzufügen
 echo "auto_assign_floating_ip = True" >> /etc/nova/nova.conf
 
+#Erstellen einer VM mit dem hinzugefügtem Ubuntu Cloud Image
+nova boot --image "$GLANCEIMAGENAME" --flavor 1 --key-name "$KEYPAIRNAME" vm_01
+
+
 #comming soon:
 #last command@ 3.4: log into vm with ssh
 #http://docs.openstack.org/grizzly/basic-install/apt/content/basic-install_operate.html
@@ -52,8 +56,3 @@ echo "auto_assign_floating_ip = True" >> /etc/nova/nova.conf
 # 
 #ssh "$LOGIN"@"$IP" 'touch /tmp/testSuccess'  //test do something on ssh-server
 #
-
-#Erstellen einer VM mit dem hinzugefügtem Ubuntu Cloud Image
-nova boot --image "$GLANCEIMAGENAME" --flavor 1 --key-name "$KEYPAIRNAME" vm_01
-
-
