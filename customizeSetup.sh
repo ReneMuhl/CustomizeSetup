@@ -35,24 +35,21 @@ else
 fi
 
 #Erstelle Keypair und füge dieses zu einer VM hinzu
-ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
-nova keypair-add --pub_key ~/.ssh/id_rsa.pub "$KEYPAIRNAME"
-chmod 400 "$KEYPAIRNAME"
+nova keypair-add "$KEYPAIRNAME" > "$KEYPAIRNAME".pem
+chmod 400 "$KEYPAIRNAME".pem
 
 #Option für Automatische Floating-IP-Zuweisung der Nova-Konfigurationsdatei hinzufügen
 echo "auto_assign_floating_ip = True" >> /etc/nova/nova.conf
+for i in nova-novncproxy nova-api nova-cert nova-conductor nova-consoleauth nova-scheduler nova-network nova-api-metadata nova-compute
+do
+sudo service "$i" restart
+done
 
 #Erstellen einer VM mit dem hinzugefügtem Ubuntu Cloud Image
 nova boot --image "$GLANCEIMAGENAME" --flavor 1 --key-name "$KEYPAIRNAME" vm_01
+sleep 30
 
+ssh root@192.168.128.250 -i "$KEYPAIRNAME".pem 'useradd guest'
+echo "Passwort für den Nutzer \" guest \" eingeben:"
+ssh root@192.168.128.250 -i "$KEYPAIRNAME".pem 'passwd guest'
 
-#comming soon:
-#last command@ 3.4: log into vm with ssh
-#http://docs.openstack.org/grizzly/basic-install/apt/content/basic-install_operate.html
-#Füge für Nutzer ubuntu oder root ein passwort hinzu oder Lege neuen Nutzer an
-#
-#LOGIN="compute"
-#IP="192.168.128.131"
-# 
-#ssh "$LOGIN"@"$IP" 'touch /tmp/testSuccess'  //test do something on ssh-server
-#
