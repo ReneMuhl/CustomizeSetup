@@ -6,7 +6,7 @@ IMAGENAME="precise-server-cloudimg-amd64-disk1.img"
 
 #variables
 DOWNLOADFOLDER="images"
-GLANCEIMAGENAME="ubuntu12.04.3LTS"
+GLANCEIMAGENAME="ubuntu12.04LTS"
 KEYPAIRNAME="default_key"
 
 #Download des Cloud Image
@@ -27,11 +27,11 @@ ISIMAGEADDED=`glance index | awk '{print $2}' | grep -E "$GLANCEIMAGENAME"`
 echo "$ISIMAGEADDED"
 if [[ -z "$ISIMAGEADDED" ]]
 then
-        echo "image noch nicht geaddet"
+        echo "Image wird jetzt hinzugefügt"
         glance image-create --name "$GLANCEIMAGENAME" --disk-format=raw --container-format=bare --file "$DOWNLOADFOLDER"/"$IMAGENAME"
         glance index
 else
-        echo "image bereits geaddet"
+        echo "Image bereits hinzugefügt"
 fi
 
 #Erstelle Keypair und füge dieses zu einer VM hinzu
