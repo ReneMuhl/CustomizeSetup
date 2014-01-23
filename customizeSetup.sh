@@ -1,5 +1,5 @@
 #! /bin/bash
-# Das Skript dient der Anpassung der OpenStack-Umgebung nach einer vorangegangenen Installation 
+# Das Skript dient der einmaligen Anpassung der OpenStack-Umgebung nach einer vorangegangenen Installation 
 # nach dieser Anleitung: https://github.com/jedipunkz/openstack_grizzly_install.
 # Anschließend steht für neue VMs ein Ubuntu Server Image der aktuellen LTS-Version 12.04 zur Verfügung.
 # Desweiteren kann man sich in eine VM mit dem Nutzer "guest" und Passwort "guest" einloggen.
@@ -58,7 +58,7 @@ done
 
 #Erstellen einer VM mit dem hinzugefügtem Ubuntu Cloud Image und erstellem Keypair
 nova boot --image "$GLANCE_IMAGE_NAME" --flavor 1 --key-name "$KEY_PAIR_NAME" vm_01
-sleep 30
+sleep 10
 
 #Anlegen eines Nutzers "guest"
 echo "Passwort für den neuen Nutzer \"guest\" eingeben:"
