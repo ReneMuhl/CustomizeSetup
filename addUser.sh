@@ -1,6 +1,11 @@
+# Skript zum Hinfügen eines Nutzers auf Basis eines Keypairs
+# Verwendung: ./addUser VM_IP
+## Anmerkung: die IP der VM erhält man durch Eingabe des OpenStack-Befehls: "nova list"
+## (zum Auflisten der aktuellen VMs)
+
 if [[ -z "$1" ]]
 then 
-	echo "Benutzung: ./addUser IP_DER_VM"
+	echo "Verwendung: ./addUser VM_IP"
 else
 	KEYPAIRNAME="default_key"
 	VM_IP=$1
