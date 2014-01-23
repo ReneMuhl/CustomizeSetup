@@ -9,14 +9,14 @@ Zum Testen von OpenStack wird eine Installation mit nova-network auf einem Rechn
 Benötigt wird ein Rechner mit Internetzugang und zwei Netzwerkkarten(NIC), auf dem
 ein Debian-basiertes Betriebssystem installiert ist (bspw. Ubuntu).
 Alle OpenStack Befehle gehen nur, wenn man entsprechende Umgebungsvariablen mit:
-"source ~/openstackrc-demo" geladen hat.
+`source ~/openstackrc-demo` geladen hat.
 
 Ablauf:
 ----------
 1. Installation von git und kopieren des Installationsskriptes mit:
-"git clone https://github.com/jedipunkz/openstack_grizzly_install.git"
+- `git clone https://github.com/jedipunkz/openstack_grizzly_install.git`
 
-2. Netzwerkkonfiguration anpassen, anhand der Anleitung auf:
+2. Netzwerkkonfiguration (/etc/network/interfaces) anpassen, anhand der Anleitung auf:
 https://github.com/jedipunkz/openstack_grizzly_install
 (Bsp.: in Datei: interfaces.example)
 
@@ -24,7 +24,9 @@ https://github.com/jedipunkz/openstack_grizzly_install
 "openstack_grizzly_install/setup.conf"
 (Bsp.: in Datei: setup.conf.example)
 
-4. Starten des Skriptes: sudo ./setup.sh allinone
+4. Starten des Skriptes:
+
+- `sudo ./setup.sh allinone`
 
 5. "customizeSetup.sh" auf den Rechner kopieren, Ausführungsrechte geben und ausführen
 
