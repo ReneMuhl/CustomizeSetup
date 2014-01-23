@@ -1,5 +1,4 @@
-CustomizeSetup
-====================
+(CustomizeSetup)
 
 Anleitung zum Ausprobieren des OpenStack Frameworks (in der stabilen Version Grizzly)
 ======================================================================================
