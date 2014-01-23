@@ -26,7 +26,7 @@ https://github.com/jedipunkz/openstack_grizzly_install
 
 4. Starten des Skriptes:
 
-- `sudo ./setup.sh allinone`
+ `sudo ./setup.sh allinone`
 
 5. "customizeSetup.sh" auf den Rechner kopieren, Ausführungsrechte geben und ausführen
 
